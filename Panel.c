@@ -318,10 +318,12 @@ bool Panel_onKey(Panel* this, int key) {
    int size = Vector_size(this->items);
    switch (key) {
    case KEY_DOWN:
+   case 'j':
    case KEY_CTRL('N'):
       this->selected++;
       break;
    case KEY_UP:
+   case 'k':
    case KEY_CTRL('P'):
       this->selected--;
       break;
@@ -336,23 +338,33 @@ bool Panel_onKey(Panel* this, int key) {
       break;
    #endif
    case KEY_LEFT:
-   case KEY_CTRL('B'):
+   case 'h':
       if (this->scrollH > 0) {
          this->scrollH -= MAXIMUM(CRT_scrollHAmount, 0);
          this->needsRedraw = true;
       }
       break;
    case KEY_RIGHT:
-   case KEY_CTRL('F'):
+   case 'l':
       this->scrollH += CRT_scrollHAmount;
       this->needsRedraw = true;
       break;
+   case KEY_CTRL('U'):
+      this->selected -= (this->h - 1) / 2;
+      this->needsRedraw = true;
+      break;
+   case KEY_CTRL('D'):
+      this->selected += (this->h - 1) / 2;
+      this->needsRedraw = true;
+      break;
    case KEY_PPAGE:
+   case KEY_CTRL('B'):
       this->selected -= (this->h - 1);
       this->scrollV = MAXIMUM(0, this->scrollV - this->h + 1);
       this->needsRedraw = true;
       break;
    case KEY_NPAGE:
+   case KEY_CTRL('F'):
       this->selected += (this->h - 1);
       this->scrollV = MAXIMUM(0, MINIMUM(Vector_size(this->items) - this->h,
                                  this->scrollV + this->h - 1));
@@ -374,9 +386,11 @@ bool Panel_onKey(Panel* this, int key) {
       break;
    }
    case KEY_HOME:
+   case 'g':
       this->selected = 0;
       break;
    case KEY_END:
+   case 'G':
       this->selected = size - 1;
       break;
    case KEY_CTRL('A'):

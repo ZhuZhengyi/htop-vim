@@ -15,6 +15,42 @@ It requires `ncurses`.
 For more information and details on how to contribute to `htop`
 visit [htop.dev](https://htop.dev).
 
+## Vim keybindings
+
+These are the keybindings added in this fork of htop:
+
+```
+    g        to the top (gg in vim)
+
+  <C-b>      up 1 page
+
+  <C-u>      up 1/2 page
+
+    k
+
+h       l    one character
+
+    j
+
+  <C-d>      down 1/2 page
+
+  <C-f>      down 1 page
+
+    G        to the end
+
+--------------------------------------------------
+
+    o        Expand/collapse (like in NERDTree)
+```
+
+In order to accomodate these keybindings, the following changes
+were made to the original keybindings:
+
+* Ctrl+F and Ctrt+B can no longer be used to navigate horizontally
+* 'h' can no longer be used to access the help, leaving Ctrl+F1 & '?'
+* 'k' can no longer be used to kill processes, being replaced with 'x'
+* 'l' can no longer be used to list open files, being replaced with 'L'
+
 ## Build instructions
 
 This program is distributed as a standard autotools-based package.
