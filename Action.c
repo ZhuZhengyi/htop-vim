@@ -448,7 +448,7 @@ static const struct {
    const char* key;
    const char* info;
 } helpLeft[] = {
-   { .key = " Arrows: ", .info = "scroll process list" },
+   { .key = "   hjkl: ", .info = "scroll process list" },
    { .key = " Digits: ", .info = "incremental PID search" },
    { .key = "   F3 /: ", .info = "incremental name search" },
    { .key = "   F4 \\: ",.info = "incremental name filtering" },
@@ -474,7 +474,7 @@ static const struct {
    { .key = "  Space: ", .info = "tag process" },
    { .key = "      c: ", .info = "tag process and its children" },
    { .key = "      U: ", .info = "untag all processes" },
-   { .key = "   F9 k: ", .info = "kill process/tagged processes" },
+   { .key = "   F9 x: ", .info = "kill process/tagged processes" },
    { .key = "   F7 ]: ", .info = "higher priority (root only)" },
    { .key = "   F8 [: ", .info = "lower priority (+ nice)" },
 #if (defined(HAVE_LIBHWLOC) || defined(HAVE_LINUX_AFFINITY))
@@ -482,12 +482,12 @@ static const struct {
 #endif
    { .key = "      e: ", .info = "show process environment" },
    { .key = "      i: ", .info = "set IO priority" },
-   { .key = "      l: ", .info = "list open files with lsof" },
-   { .key = "      x: ", .info = "list file locks of process" },
+   { .key = "      L: ", .info = "list open files with lsof" },
+   { .key = "      X: ", .info = "list file locks of process" },
    { .key = "      s: ", .info = "trace syscalls with strace" },
    { .key = "      w: ", .info = "wrap process command in multiple lines" },
    { .key = " F2 C S: ", .info = "setup" },
-   { .key = "   F1 h: ", .info = "show this help screen" },
+   { .key = "   F1 ?: ", .info = "show this help screen" },
    { .key = "  F10 q: ", .info = "quit" },
    { .key = NULL, .info = NULL }
 };
@@ -662,6 +662,7 @@ void Action_setBindings(Htop_Action* keys) {
    keys['I'] = actionInvertSortOrder;
    keys[KEY_F(6)] = actionSetSortColumn;
    keys[KEY_F(18)] = actionExpandCollapseOrSortColumn;
+   keys['o'] = actionExpandCollapseOrSortColumn;
    keys['<'] = actionSetSortColumn;
    keys[','] = actionSetSortColumn;
    keys['>'] = actionSetSortColumn;
@@ -670,7 +671,7 @@ void Action_setBindings(Htop_Action* keys) {
    keys['q'] = actionQuit;
    keys['a'] = actionSetAffinity;
    keys[KEY_F(9)] = actionKill;
-   keys['k'] = actionKill;
+   keys['x'] = actionKill;
    keys[KEY_RECLICK] = actionExpandOrCollapse;
    keys['+'] = actionExpandOrCollapse;
    keys['='] = actionExpandOrCollapse;
@@ -681,13 +682,12 @@ void Action_setBindings(Htop_Action* keys) {
    keys['S'] = actionSetup;
    keys['C'] = actionSetup;
    keys[KEY_F(2)] = actionSetup;
-   keys['x'] = actionShowLocks;
-   keys['l'] = actionLsof;
+   keys['X'] = actionShowLocks;
+   keys['L'] = actionLsof;
    keys['s'] = actionStrace;
    keys[' '] = actionTag;
    keys['\014'] = actionRedraw; // Ctrl+L
    keys[KEY_F(1)] = actionHelp;
-   keys['h'] = actionHelp;
    keys['?'] = actionHelp;
    keys['U'] = actionUntagAll;
    keys['c'] = actionTagAllChildren;
